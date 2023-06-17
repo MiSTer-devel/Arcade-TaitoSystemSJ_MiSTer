@@ -1,12 +1,12 @@
 <h1># Taito System SJ</H1>
-Thank you to the following members of the MiSTer community: Boogermann, misterretrowolf, Sorgelig, & Jotego.   
+<p>Thank you to the following members of the MiSTer community: Boogermann, misterretrowolf, Sorgelig, & Jotego.</p>
 
-The Taito System SJ was manufactured by Taito in 1982.   The Taito System SJ featured hardware specifications that were relatively advanced for its time and can run several games.  The most recognizable games in the collection are Elevator Action and Jungle King.  
+<p>The Taito System SJ was manufactured by Taito in 1982.   The Taito System SJ featured hardware specifications that were relatively advanced for its time and can run several games.  The most recognizable games in the collection are Elevator Action and Jungle King.  </p>
 
-Main CPU :Zilog Z80 CPU running at 4 MHz for running game logic and an AY8910 @ 1.5Mhz.  
-Audio CPU:Zilog Z80 CPU running at 3 MHz for coordinating sound effects controlling 3 additional AY8910s also running at 1.5Mhz.  
-Video resolution : 256x224 @ 59.2Hz  
-Video Hardware : 3 seperate independantly scrollable tile maps and adjustable priorities, a 4th layer is dedicated to 'objects' (sprites).   
+<strong>Main CPU :</strong> Zilog Z80 CPU running at 4 MHz for running game logic and an AY8910 @ 1.5Mhz.  
+<strong>Audio CPU:</strong> Zilog Z80 CPU running at 3 MHz for coordinating sound effects controlling 3 additional AY8910s @ 1.5Mhz.  
+<strong>Video resolution:</strong> 256x224 @ 59.2Hz  
+<strong>Video Hardware:</strong> 3 seperate independantly scrollable tile maps and adjustable priorities, a 4th layer is dedicated to 'objects' (sprites).   
 
 <h2>Compatible Platforms</h2>
 <li>MiSTer FPGA</li>
