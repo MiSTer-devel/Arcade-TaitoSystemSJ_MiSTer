@@ -1,4 +1,4 @@
-<h1># Taito System SJ</H1>
+# [Taito System SJ](https://www.system16.com/hardware.php?id=634)
 <p>Thank you to the following members of the MiSTer community: Boogermann, misterretrowolf, Sorgelig, & Jotego.</p>
 
 <p>The Taito System SJ was manufactured by Taito in 1982.   The Taito System SJ featured hardware specifications that were relatively advanced for its time and can run several games.  The most recognizable games in the collection are Elevator Action and Jungle King.  </p>
