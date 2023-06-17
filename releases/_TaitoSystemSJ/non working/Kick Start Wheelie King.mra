@@ -1,0 +1,49 @@
+<misterromdescription>
+	<name>Kick Start Wheelie King</name>
+	<mameversion>0245</mameversion>
+	<setname>kikstart</setname>
+	<parent>kikstart</parent>
+	<mratimestamp>202304140600</mratimestamp>
+	<year>1983</year>
+	<manufacturer>Taito</manufacturer>
+	<category>Racing</category>
+	<rbf>TaitoSJ</rbf>
+	<rotation>horizontal</rotation>
+	<joystick>8-way</joystick>
+	<switches default="FF,FF,FF">
+		<dip bits="8,9" name="Bonus Life" ids="10000,15000,20000,25000"/>
+		<dip bits="10" name="Free Play" ids="Off,On"/>
+		<dip bits="11,12" name="Lives" ids="3,4,5,6"/>
+		<dip bits="13" name="Unknown" ids="Off, On"/>
+		<dip bits="14" name="Flip Screen" ids="Off, On"/>
+		<dip bits="15" name="Cabinet" ids="Upright, Cocktail"/>
+		<dip bits="16,19" name="Coin A" ids="9C1C,8C1C,7C1C,6C1C,5C1C,4C1C,3C1C,2C1C,1C1C,1C2C,1C3C,1C4C,1C5C,1C6C,1C7C,1C8C"/>
+		<dip bits="20,23" name="Coin B" ids="9C1C,8C1C,7C1C,6C1C,5C1C,4C1C,3C1C,2C1C,1C1C,1C2C,1C3C,1C4C,1C5C,1C6C,1C7C,1C8C"/>		
+		<dip bits="24,25" name="Difficulty" ids="Easiest,Easy,Normal,Hard"/>
+		<dip bits="26" name="Unknown" ids="Off,On"/>
+		<dip bits="27" name="Unknown" ids="Off,On"/>
+		<dip bits="28" name="Coinage Display" ids="Coins/Credits,Insert Coin"/>		
+		<dip bits="29" name="Year Display" ids="No,Yes"/>		
+		<dip bits="30" name="Hit Detection" ids="Normal Game,No Hit"/>		
+		<dip bits="31" name="Coin Slots" ids="A and B,A only"/>		
+	</switches>		
+	<rom index="0" md5="none" zip="kikstart.zip" type="merged|nonmerged">
+		<part crc="5810be97" name="a20-01"/>
+		<part crc="13e9565d" name="a20-02"/>
+		<part crc="93d7a9e1" name="a20-03"/>
+		<part crc="1f23c5d6" name="a20-04"/>
+		<part crc="5810be97" name="a20-01"/>
+		<part crc="13e9565d" name="a20-02"/>
+		<part crc="93d7a9e1" name="a20-03"/>
+		<part crc="66e100aa" name="a20-05"/>
+		<part crc="6582fc89" name="a20-06"/>
+		<part crc="8c0b76d2" name="a20-07"/>
+		<part crc="0cca7a9d" name="a20-08"/>
+		<part crc="da625ccf" name="a20-09"/>
+		<part crc="b833b5ea" name="eb16.22"/>
+		<part repeat="0x0400"> 00 </part>
+		<part crc="de4352a4" name="a20-10"/>
+		<part crc="8db12dd9" name="a20-11"/>
+		<part crc="e7eeb933" name="a20-12"/>	
+    </rom>		
+</misterromdescription>
