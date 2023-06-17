@@ -1,6 +1,7 @@
 <h1># Taito System SJ</H1>
 Thank you to the following members of the MiSTer community: Boogermann, misterretrowolf, Sorgelig, & Jotego.
 
+
 The Taito System SJ was manufactured by Taito in 1982.   The Taito System SJ featured hardware specifications that were relatively advanced for its time and can run several games.  The most recognizable games in the collection are Elevator Action and Jungle King. 
 
 Main CPU :Zilog Z80 CPU running at 4 MHz for running game logic and an AY8910 @ 1.5Mhz
