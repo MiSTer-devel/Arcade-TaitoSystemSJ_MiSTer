@@ -25,7 +25,7 @@
 		<dip bits="38" name="Free Game" ids="Normal Game,Free Game"/>		
 		<dip bits="39" name="Coin Slots" ids="A and B,A only"/>			
 	</switches>		
-	<rom index="0" md5="none" zip="piratpet.zip" type="merged|nonmerged">
+	<rom index="0" md5="none" zip="piratpet.zip|junglek.zip" type="merged|nonmerged">
 		<part crc="8287dbc2" name="pp0p_ic.69"/>
 		<part crc="27a90850" name="pp1p_ic.68"/>
 		<part crc="d224fa85" name="pp2p_ic.67"/>
