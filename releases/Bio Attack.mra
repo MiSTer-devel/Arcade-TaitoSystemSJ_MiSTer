@@ -10,6 +10,7 @@
 	<rbf>TaitoSJ</rbf>
 	<rotation>Vertical</rotation>
 	<joystick>8-way</joystick>
+        <buttons default="A,B,Start,Select,L,R,X,Y" names="A,B,Start,Select,Coin,Coin,Service,Pause">
 	<switches default="00,00,FF,00,00,00,00,00">
 		<dip bits="8,9" name="Bonus Life" ids="10000,15000,20000,25000"/>
 		<dip bits="11,12" name="Lives" ids="3,4,5,6"/>
