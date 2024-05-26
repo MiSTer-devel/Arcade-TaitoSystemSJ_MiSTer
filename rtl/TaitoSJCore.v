@@ -55,7 +55,7 @@ module taitosj_fpga(
 
 //SYSTEM SJ CLOCKS - VIDEO
 reg clkm_24MHZ, clkm_12MHZ, clkm_3MHZ, clkm_1p5MHZ;
-reg clkm_6MHZ;
+reg clkm_6MHZ,clk2_6MHZ,clk3_6MHZ;
 reg clkb_6MHZ,clkb_3MHZ,clkc_6MHZ;
 
 //core clock generation logic based on jtframe code
@@ -70,6 +70,8 @@ always @(posedge clkm_48MHZ) begin
 	clkm_12MHZ		<= cencnt[1:0] == 2'd0;
 	clkm_6MHZ		<= cencnt[2:0] == 3'd0;
 	clkc_6MHZ		<= cencnt[2:0] == 3'd0;
+	clk2_6MHZ		<= cencnt[2:0] == 3'd1;	
+	clk3_6MHZ		<= cencnt[2:0] == 3'd2;		
 	clkb_6MHZ		<= cencnt[2:0] == 3'd4;
    clkm_3MHZ		<= cencnt[3:0] == 4'd0;
 	clkb_3MHZ		<= cencnt[3:0] == 4'd8;	
@@ -80,7 +82,7 @@ end
 assign core_pix_clk=clkc_6MHZ;
 
 //SYSTEM SJ CLOCKS - CPU
-reg clkm_16MHZ,clkm_8MHZ, clkm_4MHZ,clkm_4MHZn,clkm_2MHZ;
+reg clkm_16MHZ,clkm_8MHZ, clkm_8MHZn, clkm_4MHZ,clkm_4MHZn,clkm_2MHZ;
 
 reg [3:0] mcpucnt =4'd0;
 
@@ -91,6 +93,7 @@ end
 always @(posedge clkm_32MHZ) begin
 	clkm_16MHZ	  	<= mcpucnt[0]   == 1'd0;
 	clkm_8MHZ	  	<= mcpucnt[1:0] == 2'd0;
+	clkm_8MHZn	  	<= mcpucnt[1:0] == 2'd2;	
 	clkm_4MHZ	  	<= mcpucnt[2:0] == 3'd0;
 	clkm_4MHZn	  	<= mcpucnt[2:0] == 3'd4;
 	clkm_2MHZ	  	<= mcpucnt[3:0] == 4'd0;
@@ -195,11 +198,12 @@ wire [3:0] EB16_out;
 wire [7:0] HIT_DATA;
 wire wait_n = !pause;
 wire [15:0] RGB;
-wire SN1LD,SN2LD,SN3LD,PH01,PH23,PH45,PH67,PHA34;
+wire SN1LD,SN2LD,SN3LD,PH01,PH23,PH45,PH67;
 wire LNSL1,LNSL2,LNLD1,LNLD2,LNCL1,LNCL2;
 wire BLANK;
 wire [4:0] syncbus_HM;
-wire [7:0] syncbus_HN,syncbus_H,syncbus_V,syncbus_PH;
+wire [8:0] syncbus_HN;
+wire [7:0] syncbus_H,syncbus_V,syncbus_PH;
 wire [7:0] SCD,Z80A_SCD_data_out,Z80A_OD_out;
 wire [12:0] OBJ_CHA;
 
@@ -286,19 +290,19 @@ assign CRDH = (!CINV )? CRD : {CRD[0],CRD[1],CRD[2],CRD[3],CRD[4],CRD[5],CRD[6],
 assign CGDH = (!CINV )? CGD : {CGD[0],CGD[1],CGD[2],CGD[3],CGD[4],CGD[5],CGD[6],CGD[7]};
 assign CBDH = (!CINV )? CBD : {CBD[0],CBD[1],CBD[2],CBD[3],CBD[4],CBD[5],CBD[6],CBD[7]};
 
-always @(posedge syncbus_PH[4]) begin //45
+always @(posedge PH45) begin //45 //syncbus_PH[4]
 	SN11_in <= CRDH;
 	SN12_in <= CGDH;
 	SN13_in <= CBDH;
 end
 
-always @(posedge syncbus_PH[6]) begin //67
+always @(posedge PH67) begin //67 //syncbus_PH[6]
 	SN21_in <= CRDH;
 	SN22_in <= CGDH;
 	SN23_in <= CBDH;
 end
 
-always @(posedge syncbus_PH[0]) begin //01
+always @(posedge PH01) begin //01 syncbus_PH[0]
 	SN31_in <= CRDH;
 	SN32_in <= CGDH;
 	SN33_in <= CBDH;
@@ -339,7 +343,7 @@ ls166x3 CRGBO( //sprites / objects
 	.pinA(CRDH),
 	.pinB(CGDH),
 	.pinC(CBDH),	
-	.PE(syncbus_PH[3]|syncbus_PH[4]|INRANG),//|OBJ_CHA[12]  PHA34 //syncbus_PH[3]|
+	.PE(|syncbus_PH[4:3]|INRANG),//|OBJ_CHA[12]  PHA34 //syncbus_PH[3]|
 	.clr(1'b1), //enabled sprites
 	.QH(QBUS)
 );
@@ -382,6 +386,8 @@ hit_bus HB(
 always @(posedge SMD12) {CCH2,MD2,CCH1,MD1}<=Z80A_databus_out; 	//D506
 always @(posedge SMD3)  {MD0,CCH3,MD3}<= Z80A_databus_out[5:0];	//D507
 always @(posedge PRY)   PRIORITY<=Z80A_databus_out[4:0];				//D300 - Priority Control
+//reg m1_pause;
+//always @(posedge clkm_4MHZ) m1_pause<=Z80A_M1&!m1_pause;
 
 //First Z80 CPU responsible for main game logic
 T80pa Z80A(
@@ -503,6 +509,8 @@ sync_bus syncbus(
 	.clkm_48MHZ(clkm_48MHZ),
 	.clkm_6MHZ(clkm_6MHZ),			//pixel clock
 	.clkb_6MHZ(clkb_6MHZ),			//master clock	
+	.CLK2(clk2_6MHZ),	
+	.CLK3(clk3_6MHZ),
 	.clkm_3MHZ(clkm_3MHZ),			//1/2 pixel clock
 	.RESET_n(RESET_n),
 	.SPH1(SPH1),
@@ -527,7 +535,6 @@ sync_bus syncbus(
 	.SN3LD(SN3LD),
 	.PH01(PH01),	
 	.PH23(PH23),
-	.PHA34(PHA34),	
 	.PH45(PH45),
 	.PH67(PH67),
 	.HLP0(HLP0),
@@ -629,7 +636,8 @@ obj_bus TSJ_OBJ_BUS(
 	.clkm_48MHZ(clkm_48MHZ),
 	.clkm_32MHZ(clkm_32MHZ),	
 	.clkm_6MHZ(clkm_6MHZ),			//master clock
-	.clkb_6MHZ(clkb_6MHZ),			
+	.clkb_6MHZ(clkb_6MHZ),		
+	.CLK2(clk2_6MHZ),	
 	//inputs
 	.syncbus_HN(syncbus_HN),			//128HN=[7],64=[6],32=[5],16=[4],8=[3],4=[2],2=[1],1HN=[0]
 	.syncbus_PH(syncbus_PH),	
@@ -638,10 +646,8 @@ obj_bus TSJ_OBJ_BUS(
 	.Z80A_databus_out(Z80A_databus_out),
 	.Z80A_WR(Z80A_WR),
 	.OBJRQ(OBJRQ),
-	.H_BLANK(H_BLANK),
 	.SOFF(SOFF),
 	.QBUS(QBUS),
-	.PHA34(PHA34),
 	//outputs
 	.OBJ_CHA(OBJ_CHA), 		
 	.Z80A_OD_out(Z80A_OD_out),
@@ -711,6 +717,7 @@ assign AY_0_BC1 =AY_0_SEL&!Z80A_addrbus[0]&!Z80A_WR;
 wire 	 nSND_RST=1'b1;
 wire signed [15:0] audio_snd;
 wire signed [15:0] audio_snd_ext;
+
 jt49_bus AY_0(
     .rst_n(RESET_n),
     .clk(clkm_48MHZ),						// signal on positive edge
