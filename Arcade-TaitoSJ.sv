@@ -213,7 +213,7 @@ wire [24:0] ioctl_addr;
 wire  [7:0] ioctl_dout;
 wire  [7:0] ioctl_din;
 wire  [7:0] ioctl_index;
-wire        ioctl_wait;
+wire        ioctl_wait = 0;
 
 wire [15:0] joystick_0;
 
@@ -270,7 +270,7 @@ localparam CONF_STR = {
 	"-;",
 	"R0,Reset;",
 	"J1,Button 1,Button 2,Start 1P,Start 2P,Coin A,Coin B,Service,Pause;",
-	//"Jn,A,B,Start,Select;",
+	"Jn,A,B,Start,Select,L,R,X,Y;",
 	"V,v",`BUILD_DATE
 };
 
