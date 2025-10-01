@@ -4,6 +4,7 @@ set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoS
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoSJ_sync_bus.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoSJ_objbus.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoSJ_hit_bus.v"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoSJ_mcu.v"]
 set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "rom_loader.sv"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "ttl_chips.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "hiscore.v"]

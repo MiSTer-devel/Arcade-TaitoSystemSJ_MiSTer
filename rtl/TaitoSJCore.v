@@ -102,10 +102,11 @@ end
 //Z80A (Main CPU) address & databus definitions
 wire Z80A_MREQ,Z80A_WR,Z80A_RD,Z80A_IOREQ,Z80A_RFSH,Z80A_M1,Z80A_INT;
 wire [15:0] Z80A_addrbus;
-wire [7:0]  Z80A_databus_in,Z80A_databus_out,Z80A_RAM_out,Z80A_MROM_out,Z80A_BROM_out;
+wire [7:0]  Z80A_databus_in,Z80A_databus_out,Z80A_RAM_out,Z80A_MROM_out,Z80A_BROM_out,MCU_ROM_out;
 
 //chip selects:
-wire MROMRQ,BROMRQ,SRAMREQ,MCU,HTCLR,EXROM1,EXROM2,EPORT1,EPORT2,TIME_RESET,COIN_SET,EXPORT;
+wire MROMRQ,BROMRQ,SRAMREQ,HTCLR,EXROM1,EXROM2,EPORT1,EPORT2,TIME_RESET,COIN_SET,EXPORT;
+wire MCU,MCU_ROM,MCU_ROM_RD;
 
 //program ROM 
 assign MROMRQ   = (Z80A_addrbus[15] == 1'b0) & !BANK_SEL & !Z80A_MREQ; //Main Program ROM
@@ -113,7 +114,10 @@ assign BROMRQ	 = (Z80A_addrbus[15] == 1'b0) &  BANK_SEL & !Z80A_MREQ; //Main Pro
 
 //work RAM
 assign SRAMREQ  = (Z80A_addrbus[15:11] == 5'b10000) 						? 1'b1 : 1'b0; //8000 - 87FF - Main CPU RAM
-assign MCU 		 = (Z80A_addrbus[15:11] == 5'b10001) 						? 1'b1 : 1'b0; //8800 - 8FFF - MCU Read/Write
+
+//MCU
+assign MCU 		 = (Z80A_addrbus[15:11] == 5'b10001) 						? 1'b0 : 1'b1; //8800 - 8FFF - MCU Read/Write
+assign MCU_ROM  = (Z80A_addrbus[15:13] == 3'b111) 							? 1'b0 : 1'b1; //E000 - EFFF - MCU ROM
 
 //VRAM
 assign CDR1RQ	 = (Z80A_addrbus[15:11] == 5'b10010)						? 1'b0 : 1'b1; //9000 - 97FF - Character Generator RAM
@@ -171,7 +175,8 @@ assign Z80A_databus_in =	(MROMRQ  						& !Z80A_RD) 	? Z80A_MROM_out 		:
 									(Z80A_addrbus == 16'hD409	& !Z80A_RD) 	? INPUT1X 				:
 									(Z80A_addrbus == 16'hD408 	& !Z80A_RD) 	? INPUT0X 				:
 									(AY_0_SEL         			& !Z80A_RD)    ? AY_0_databus_out   :
-									(MCU								& !Z80A_RD)		? 8'b11111111   		:
+									(!MCU								& !Z80A_RD)		? 8'b11111111   		:
+									(!MCU_ROM	& !Z80A_MREQ	& !Z80A_RD)		? MCU_ROM_out			:
 									8'b00000000;
 
 wire PUR = 1'b1;
@@ -410,6 +415,25 @@ T80pa Z80A(
 	.RD_n(Z80A_RD)
 );
 
+wire mcu_bs_wr,mcu_bs_rd;
+wire [7:0] mcu_bs_dout,mcu_bs_din;
+wire [7:0] mcu_rom_data;
+wire [10:0] mcu_rom_addr;
+/*
+SJ_mcu MCU68705(
+	.rst(RESET_n),
+	.clk(clkm_32MHZ),
+	.cen(clkm_4MHZ),
+	.bs_wr(mcu_bs_wr),
+	.bs_rd(mcu_bs_rd),
+	.bs_dout(mcu_bs_dout),
+	.bs_din(mcu_bs_din),
+	.rom_addr(mcu_rom_addr),
+   .rom_data(mcu_rom_data)
+);*/
+
+
+ 
 wire [9:0] sound_outAY1;
 wire [9:0] sound_outAY2;
 wire [9:0] sound_outAY3;

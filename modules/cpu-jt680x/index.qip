@@ -1,0 +1,9 @@
+# ==============================================================================
+# Quartus Prime QIP Index File
+# ==============================================================================
+set_global_assignment -name VERILOG_FILE       [file join $::quartus(qip_path) "hdl/jtframe_6805mcu.v"]
+set_global_assignment -name VERILOG_FILE       [file join $::quartus(qip_path) "hdl/jtframe_ram.v"]
+set_global_assignment -name VERILOG_FILE       [file join $::quartus(qip_path) "hdl/jt6805_alu.v"]
+set_global_assignment -name VERILOG_FILE       [file join $::quartus(qip_path) "hdl/jt6805_ctrl.v"]
+set_global_assignment -name VERILOG_FILE       [file join $::quartus(qip_path) "hdl/jt6805_regs.v"]
+set_global_assignment -name VERILOG_FILE       [file join $::quartus(qip_path) "hdl/jt6805.v"]

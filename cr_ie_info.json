@@ -1,0 +1,22 @@
+{
+	"system" : {
+		"platform" : "windows64",
+		"os_name" : "Windows 10",
+		"os_version" : "10.0"
+	},
+	"error" : {
+		"executable" : "quartus_fit",
+		"comment" : "none",
+		"error_message" : "Access Violation at 0X00007FFD86745B6D",
+		"source_file" : "unknown",
+		"line" : "0",
+		"stack_trace" : "\t0x7ffd86745b6c: fitter_vpr20kmain + 0x105b6c (pl_move_prepare_for_cost_calculations + 0x34c)\n\t0x7ffd869995cb: fitter_vpr20kmain + 0x3595cb (aa_pl_propose_move + 0x46b)\n\t0x7ffd869b2b54: fitter_vpr20kmain + 0x372b54 (l_mpp_perform_moves_worker + 0x214)\n\t0x7ffd869b2d74: fitter_vpr20kmain + 0x372d74 (l_mpp_worker_thread + 0x34)\n\t0x7ffd86c0402d: fitter_vpr20kmain + 0x5c402d (l_thread_start_wrapper + 0x3d)\n\t0x7ffedfbb467e: CCL_MSG + 0x1467e (?msg_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x6e)\n\t0x7ffedfcb6660: ccl_mem + 0x16660 (?mem_thread_wrapper@@YAPEAXP6APEAXPEAX@Z0@Z + 0x70)\n\t0x7ffedf9e2791: ccl_thr + 0x2791 (thr_thread_begin + 0xa1)\n\t0x7ffefd40e8d6: KERNEL32 + 0x2e8d6 (BaseThreadInitThunk + 0x16)\n\t0x7ffefe8a8d9b: ntdll + 0x8d9b (RtlUserThreadStart + 0x2b)\n",
+		"subsystem" : "unknown"
+	},
+	"quartus" : {
+		"quartus_bits" : "64",
+		"version" : "17.1.0",
+		"build" : "590",
+		"edition" : "Lite Edition"
+	}
+}
