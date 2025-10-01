@@ -410,6 +410,25 @@ T80pa Z80A(
 	.RD_n(Z80A_RD)
 );
 
+wire mcu_bs_wr,mcu_bs_rd;
+wire [7:0] mcu_bs_dout,mcu_bs_din;
+wire [7:0] mcu_rom_data;
+wire [10:0] mcu_rom_addr;
+/*
+SJ_mcu MCU68705(
+	.rst(RESET_n),
+	.clk(clkm_32MHZ),
+	.cen(clkm_4MHZ),
+	.bs_wr(mcu_bs_wr),
+	.bs_rd(mcu_bs_rd),
+	.bs_dout(mcu_bs_dout),
+	.bs_din(mcu_bs_din),
+	.rom_addr(mcu_rom_addr),
+   .rom_data(mcu_rom_data)
+);*/
+
+
+ 
 wire [9:0] sound_outAY1;
 wire [9:0] sound_outAY2;
 wire [9:0] sound_outAY3;

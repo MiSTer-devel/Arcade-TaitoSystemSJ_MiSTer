@@ -58,7 +58,7 @@ wire VINC=!nVINC;
 always @(posedge VINC) VPIX<=(VPIX==9'd511) ? 9'd248 : VPIX+9'd1;
 
 
-assign PHA34 = (|PH[4:3]);	
+//assign PHA34 = (|PH[4:3]);	
 assign HSYNC = ((HPIX>=160)&(HPIX<=192)); //192	
 
 always @(posedge VPIX[4]) VBL<=(&VPIX[7:5]); //VN128&VN64&VN32
