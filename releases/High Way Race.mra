@@ -8,7 +8,7 @@
 	<manufacturer>Taito</manufacturer>
 	<category>Racing</category>
 	<rbf>TaitoSJ</rbf>
-	<rotation>Vertical</rotation>
+	<rotation>vertical (cw)</rotation>
 	<joystick>8-way</joystick>
         <buttons default="A,B,Start,Select,L,R,X,Y" names="A,B,Start,Select,Coin,Coin,Service,Pause"/>
 	<switches default="00,40,FF,00,00,00,00,00">
