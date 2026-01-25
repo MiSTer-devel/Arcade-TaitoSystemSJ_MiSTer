@@ -10,7 +10,7 @@
 	<rbf>TaitoSJ</rbf>
 	<rotation>horizontal</rotation>
 	<joystick>8-way</joystick>
-        <buttons default="A,B,Start,Select,L,R,X,Y" names="A,B,Start,Select,Coin,Coin,Service,Pause"/>
+        <buttons default="A,B,Start,Select,L,R,X,Y" names="A,B,Start,Select,Coin 1,Coin 2,Service,Pause"/>
 	<switches default="00,C0,FF,00,00,00,00,00">
 		<dip bits="10" name="Free Play" ids="Off,On"/>
 		<dip bits="11,12" name="Lives" ids="3,4,5,6"/>
