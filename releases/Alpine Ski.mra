@@ -10,7 +10,7 @@
 	<rbf>TaitoSJ</rbf>
 	<rotation>vertical (cw)</rotation>
 	<joystick>8-way</joystick>
-        <buttons default="A,-,Start,Select,L,R,X,Y" names="Alpine,-,Start,Select,Coin,Coin,Service,Pause"/>
+        <buttons default="A,-,Start,Select,L,R,X,Y" names="Alpine,-,Start,Select,Coin 1,Coin 2,Service,Pause"/>
 	<switches default="00,40,FF,00,00,00,00,00">
 		<dip bits="8,9" name="Jump Bonus" ids="2000-4000,1000-2500,800-2000,500-1500"/>
 		<dip bits="11,12" name="Game Time" ids="2:30,2:00,1:30,1:00"/>
