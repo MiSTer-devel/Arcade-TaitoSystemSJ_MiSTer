@@ -1,5 +1,5 @@
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoSJCore.v"]
-set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "Mc68705p3.v"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "mc68705p3.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "mcu_glue.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoSJ_ram.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TaitoSJ_game_sound.v"]
